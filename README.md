@@ -11,7 +11,7 @@ There one method in this library:
 * `get_hash(flag: u8, data: &str) -> String`
 The flag is either 102 (ASCII 'f') or 115 (ASCII 's'). 
 
-## Examples
+## Example
 ### Code #1:
 ```
 use shasher;

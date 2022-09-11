@@ -20,3 +20,36 @@ pub fn get_hash(flag: u8, data: &str) -> String {
     utils::scheduler::hash(parsed_message)
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::env;
+
+    #[test]
+    fn test_string() {
+        let flag: u8 = 115;
+        let data: &str = "This is a test string.";
+
+        assert_eq!(get_hash(flag, data), "3eec256a587cccf72f71d2342b6dfab0bbca01697c7e7014540bdd62b72120da");
+    }
+
+    #[test]
+    fn test_file() {
+        let flag: u8 = 102;
+        let mut path: String = get_current_dir();
+        path.push_str("/src/utils/msg.rs");
+        let data: &str = &path[..];
+        println!("{}", data);
+
+        assert_eq!(get_hash(flag, data), "580ad3ed9192cdbe47ec2d447dc63cd6b78ac8fc45997b5b17b13c44786d2511");
+    }
+
+    fn get_current_dir() -> String {
+        let res = env::current_dir();
+        match res {
+            Ok(path) => path.into_os_string().into_string().unwrap(),
+            Err(_) => "FAILED".to_string(),
+        }
+    }
+}
+

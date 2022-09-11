@@ -32,3 +32,5 @@ f6774519d1c7a3389ef327e9c04766b999db8cdfb85d1346c471ee86d65885bc
 2762b2052be0cc5898769a8ce8435ffa7e576ddc0ed57572d8663ed5e5ae59e   
 ```
 
+### Resources 
+This entire library's writing was guided by [FIPS 180-4](https://csrc.nist.gov/publications/detail/fips/180/4/final).

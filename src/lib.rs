@@ -1,6 +1,6 @@
 mod utils;
 
-pub fn get_hash(flag: u8, data: &str) -> String {
+pub fn get_hash(flag: u8, data: &str) -> Vec<u32> {
     let mut message: Vec<u32> = Vec::new();
     if flag == 102_u8 {
         message = match utils::msg::get_binary(data) {

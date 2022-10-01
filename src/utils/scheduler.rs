@@ -16,7 +16,7 @@ const FIRST_PRIMES: [u32; 64] = [2, 3, 5, 7, 11, 13, 17, 19,
                                  269, 271, 277, 281, 283, 293, 307, 311];
 
 
-pub fn hash(parsed_message: Vec<Vec<u32>>) -> String {
+pub fn digest(parsed_message: Vec<Vec<u32>>) -> Vec<u32> {
     let blocks_in_message: usize = parsed_message.len();
     let mut message_schedule = [0_u32; WORDS_IN_SCHEDULE];
     let mut H: Vec<u32> = Vec::new();
@@ -72,10 +72,5 @@ pub fn hash(parsed_message: Vec<Vec<u32>>) -> String {
         H[6] = g + H[6];
         H[7] = h + H[7];
     }
-
-    let mut hsh = String::from(format!("{:0x}", H[0]).to_string());
-    for i in 1..8 {
-        hsh.push_str(&format!("{:0x}", H[i]).to_string());
-    }
-    hsh
+    H
 }

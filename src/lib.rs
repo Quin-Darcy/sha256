@@ -55,10 +55,17 @@ mod tests {
     fn test_file() {
         let flag: u8 = 102;
         let mut path: String = get_current_dir();
-        path.push_str("/src/utils/msg.rs");
-        let data: &str = &path[..];
-        let str_hash: String = "580ad3ed9192cdbe47ec2d447dc63cd6b78ac8fc45997b5b17b13c44786d2511".to_string();
+        let str_hash: String;
 
+        if env::consts::OS == "windows" {
+            path.push_str("\\src\\utils\\msg.rs");
+            str_hash = "8253caed2ff88d53aee87dbf8bf8b88afb16eac3fd524d0e4bbae8e95ccf99c4".to_string();
+        } else {
+            path.push_str("/src/utils/msg.rs");
+            str_hash = "580ad3ed9192cdbe47ec2d447dc63cd6b78ac8fc45997b5b17b13c44786d2511".to_string();
+        }
+
+        let data: &str = &path[..];
         assert_eq!(format!("{:0x}", get_hash(&flag, data)).to_string(), str_hash);
     }
 

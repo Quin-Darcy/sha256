@@ -64,7 +64,7 @@ pub fn get_padding(num_of_bits: u32) -> Vec<u32> {
 
 // The message and its padding are parsed into N 512-bit blocks.
 // A vector containing the N blocks each as 16 32-bit words is returned. 
-pub fn get_parsed_message(message: Vec<u32>) -> Vec<Vec<u32>> {
+pub fn get_parsed_message(message: &Vec<u32>) -> Vec<Vec<u32>> {
     let bits_in_message: usize = message.len();
     let mut parsed_message: Vec<Vec<u32>> = Vec::new();
     let blocks_in_message: usize = bits_in_message / BLOCKSIZE;

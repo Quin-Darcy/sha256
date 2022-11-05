@@ -10,3 +10,10 @@ overflow-checks = false
 
 [dependencies]
 num-bigint = "0.4"
+
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "benchmark"
+harness = false

@@ -71,7 +71,7 @@ pub mod converter {
     }
 
     pub fn num_to_bin(num: u32, num_of_bits: u32) -> Vec<u32> {
-        println!("in num_to_bin");
+        println!("in num_to_bin: {}, {}", &num, &num_of_bits);
         let mut t: u32 = 1;
         let mut index: usize = 0;
         let mut n: u32 = num.clone();

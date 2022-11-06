@@ -53,6 +53,13 @@ pub mod sha {
 }
 
 pub mod converter {
+    
+    const POWS_TWO: [u32; 32] = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048,
+                                4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288,
+                                1048576, 2097152, 4194304, 8388608, 16777216, 33554432,
+                                67108864, 134217728, 268435456, 536870912, 1073741824, 
+                                2147483648]; 
+
     pub fn bin_to_num(bin_rep:  Vec<u32>) -> u32 {
         let num_of_bits: usize = bin_rep.len();
         let mut dec_rep: u32 = 0;
@@ -62,26 +69,8 @@ pub mod converter {
         }
         dec_rep
     }
-    
-    pub fn num_to_bin(num: u32, num_of_bits: u32) -> Vec<u32> {
-        let base: u32 = 2;
-        let mut ex: u32 = 0;
-        let mut num: u32 = num.clone();
-        let mut bin_rep: Vec<u32> = vec![0; num_of_bits as usize];
-    
-        while num > 0 {
-            if base.pow(ex) <= num {
-                ex = ex + 1;
-            } else {
-                num = num - base.pow(ex-1);
-                bin_rep[(num_of_bits-ex) as usize] = 1;
-                ex = 0;
-            }
-        }
-        bin_rep
-    }
 
-    pub fn num_to_bin2(num: u32, num_of_bits: u32) -> Vec<u32> {
+    pub fn num_to_bin(num: u32, num_of_bits: u32) -> Vec<u32> {
         let mut t: u32 = 1;
         let mut index: usize = 0;
         let mut n: u32 = num.clone();
@@ -92,7 +81,7 @@ pub mod converter {
                 index += 1;
                 t = n >> index;
             }
-            n = n-2_u32.pow((index-1) as u32);
+            n = n-POWS_TWO[index-1];
             bin_rep[(num_of_bits as usize)-index] = 1;
             t = 1;
             index = 0;

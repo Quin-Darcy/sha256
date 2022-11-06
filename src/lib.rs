@@ -16,7 +16,7 @@ fn get_digest(flag: &u8, data: &str) -> Vec<u32> {
         }
         message.extend(utils::msg::get_padding(message.len() as u32)); 
     }
-
+    println!("here");
     let parsed_message: Vec<Vec<u32>> = utils::msg::get_parsed_message(&message);
 
     utils::scheduler::digest(parsed_message)

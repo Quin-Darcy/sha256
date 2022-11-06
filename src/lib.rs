@@ -16,13 +16,14 @@ fn get_digest(flag: &u8, data: &str) -> Vec<u32> {
         }
         message.extend(utils::msg::get_padding(message.len() as u32)); 
     }
-    println!("here");
+    println!("after if/else in digest");
     let parsed_message: Vec<Vec<u32>> = utils::msg::get_parsed_message(&message);
 
     utils::scheduler::digest(parsed_message)
 }
 
 pub fn get_hash(flag: &u8, data: &str) -> BigUint {
+    println!("in get_hash");
     let digest: Vec<u32> = get_digest(flag, data);
     let mut bytes: [u8; 32] = [0; 32];
 

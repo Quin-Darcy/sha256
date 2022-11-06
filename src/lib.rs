@@ -58,11 +58,11 @@ mod tests {
         let str_hash: String;
 
         if env::consts::OS == "windows" {
-            path.push_str("\\src\\utils\\msg.rs");
+            path.push_str("LICENSE");
             str_hash = "8253caed2ff88d53aee87dbf8bf8b88afb16eac3fd524d0e4bbae8e95ccf99c4".to_string();
         } else {
-            path.push_str("/src/utils/msg.rs");
-            str_hash = "580ad3ed9192cdbe47ec2d447dc63cd6b78ac8fc45997b5b17b13c44786d2511".to_string();
+            path.push_str("/LICENSE");
+            str_hash = "6022e2824ee92fcce1cdc0bfb71b8ad2428b73f939a780a115605cf47f580755".to_string();
         }
 
         let data: &str = &path[..];

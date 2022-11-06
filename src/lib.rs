@@ -12,6 +12,7 @@ fn get_digest(flag: &u8, data: &str) -> Vec<u32> {
     } else {
         let bytes: Vec<u8> = data.as_bytes().to_vec();
         for byte in bytes {
+            println!("before num_to_bin");
             message.extend(utils::compute::converter::num_to_bin(byte as u32, 8));
         }
         message.extend(utils::msg::get_padding(message.len() as u32)); 

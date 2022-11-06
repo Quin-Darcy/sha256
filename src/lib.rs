@@ -3,7 +3,6 @@ use num_bigint::BigUint;
 
 
 fn get_digest(flag: &u8, data: &str) -> Vec<u32> {
-    println!("in get_digest");
     let mut message: Vec<u32> = Vec::new();
     if *flag == 102_u8 {
         message = match utils::msg::get_binary(data) {
@@ -23,7 +22,6 @@ fn get_digest(flag: &u8, data: &str) -> Vec<u32> {
 }
 
 pub fn get_hash(flag: &u8, data: &str) -> BigUint {
-    println!("in get_hash");
     let digest: Vec<u32> = get_digest(flag, data);
     let mut bytes: [u8; 32] = [0; 32];
 

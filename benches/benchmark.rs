@@ -17,8 +17,8 @@ fn get_parsed_message_bench(c: &mut Criterion) {
 }
 
 fn num_to_bin_bench(c: &mut Criterion) {
-    let num: u32 = 42456765;
-    let num_of_bits: u32 = 32;
+    let num: u32 = 0;
+    let num_of_bits: u32 = 8;
     c.bench_function(
         "num_to_bin",
         |b| b.iter(|| num_to_bin(num, num_of_bits))

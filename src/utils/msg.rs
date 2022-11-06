@@ -53,12 +53,12 @@ pub fn get_padding(num_of_bits: u32) -> Vec<u32> {
     }
 
     let difference: Vec<u32> = vec![0; bits_in_padding as usize];
-    let message_len_as_bin: Vec<u32> = converter::num_to_bin(num_of_bits, 32);
-    let empty_block: Vec<u32> = vec![0; 32 as usize];
+    let message_len_as_bin: Vec<u32> = converter::num_to_bin(num_of_bits, 64);
+    //let empty_block: Vec<u32> = vec![0; 32 as usize];
 
     pad.push(1);
     pad.extend(difference);
-    pad.extend(empty_block);
+    //pad.extend(empty_block);
     pad.extend(message_len_as_bin);
  
     pad

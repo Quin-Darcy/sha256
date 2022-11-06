@@ -81,7 +81,8 @@ pub mod converter {
                 index += 1;
                 t = n >> index;
             }
-            n = n-POWS_TWO[index-1];
+            n = n-2_u32.pow((index-1) as u32);
+            //n = n-POWS_TWO[index-1];
             bin_rep[(num_of_bits as usize)-index] = 1;
             t = 1;
             index = 0;

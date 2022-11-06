@@ -80,4 +80,26 @@ pub mod converter {
         }
         bin_rep
     }
+
+    pub fn num_to_bin2(num: u32, num_of_bits: u32) -> Vec<u32> {
+        let mut t: u32 = 1;
+        let mut index: usize = 0;
+        let mut n: u32 = num.clone();
+        let mut bin_rep: Vec<u32> = vec![0; num_of_bits as usize];
+       
+        for _ in 0..num_of_bits {
+            while t != 0 {
+                index += 1;
+                t = n >> index;
+            }
+            n = n-2_u32.pow((index-1) as u32);
+            bin_rep[(num_of_bits as usize)-index] = 1;
+            t = 1;
+            index = 0;
+
+            if n == 0 { break; }
+        }
+        bin_rep
+    }
+
 }

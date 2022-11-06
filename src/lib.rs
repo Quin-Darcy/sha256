@@ -3,6 +3,7 @@ use num_bigint::BigUint;
 
 
 fn get_digest(flag: &u8, data: &str) -> Vec<u32> {
+    println!("in get_digest");
     let mut message: Vec<u32> = Vec::new();
     if *flag == 102_u8 {
         message = match utils::msg::get_binary(data) {
@@ -12,12 +13,10 @@ fn get_digest(flag: &u8, data: &str) -> Vec<u32> {
     } else {
         let bytes: Vec<u8> = data.as_bytes().to_vec();
         for byte in bytes {
-            println!("before num_to_bin");
             message.extend(utils::compute::converter::num_to_bin(byte as u32, 8));
         }
         message.extend(utils::msg::get_padding(message.len() as u32)); 
     }
-    println!("after if/else in digest");
     let parsed_message: Vec<Vec<u32>> = utils::msg::get_parsed_message(&message);
 
     utils::scheduler::digest(parsed_message)

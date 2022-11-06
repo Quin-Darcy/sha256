@@ -14,6 +14,7 @@ const WORDS_IN_BLOCK: usize = BLOCKSIZE / WORD_LENGTH;
 // the length of the vector is 64 less than a multiple of BLOCKSIZE. NOTE: the 
 // first padded bit is '1'.
 pub fn get_binary(file_path: &str) -> Result<Vec<u32>, std::io::Error> {
+    println!("in get_binary");
     let mut message_bytes: Vec<u8> = Vec::new();
     let mut message: Vec<u32> = Vec::new();
     let file = match File::open(file_path) {
@@ -44,6 +45,7 @@ pub fn get_binary(file_path: &str) -> Result<Vec<u32>, std::io::Error> {
 // containing a pad starting with a 1 followed by n number of zeros and ending
 // with 64 bits containing num_of_bits in binary.
 pub fn get_padding(num_of_bits: u32) -> Vec<u32> {
+    println!("in get_padding");
     let mut bits_in_padding: u32 = 0;
     let mut pad: Vec<u32> = Vec::new();
     let blocksize: u32 = BLOCKSIZE.clone() as u32;
@@ -67,6 +69,7 @@ pub fn get_padding(num_of_bits: u32) -> Vec<u32> {
 // The message and its padding are parsed into N 512-bit blocks.
 // A vector containing the N blocks each as 16 32-bit words is returned. 
 pub fn get_parsed_message(message: &Vec<u32>) -> Vec<Vec<u32>> {
+    println!("in get_parsed_message");
     let bits_in_message: usize = message.len();
     let mut parsed_message: Vec<Vec<u32>> = Vec::new();
     let blocks_in_message: usize = bits_in_message / BLOCKSIZE;

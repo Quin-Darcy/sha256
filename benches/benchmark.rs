@@ -1,21 +1,8 @@
-use shasher::utils::msg::*;
+use shasher::utils::msg::{get_binary, get_parsed_message};
+use shasher::utils::compute::converter::num_to_bin;
 use criterion::{criterion_group, criterion_main, Criterion};
 
-fn get_binary_bench(c: &mut Criterion) {
-    let input: &str = "/home/arbegla/Projects/Rust/libraries/shasher/src/lib.rs";
-    c.bench_function(
-        "get_binary", 
-        |b| b.iter(|| get_binary(input))
-    );
-}
 
-fn get_padding_bench(c: &mut Criterion) {
-    let input: u32 = 417;
-    c.bench_function(
-        "get_padding",
-        |b| b.iter(|| get_padding(input))
-    );
-}
 
 fn get_parsed_message_bench(c: &mut Criterion) {
     let path: &str = "/home/arbegla/Projects/Rust/libraries/shasher/src/lib.rs";
@@ -29,10 +16,18 @@ fn get_parsed_message_bench(c: &mut Criterion) {
     );
 }
 
+fn num_to_bin_bench(c: &mut Criterion) {
+    let num: u32 = 42456765;
+    let num_of_bits: u32 = 32;
+    c.bench_function(
+        "num_to_bin",
+        |b| b.iter(|| num_to_bin(num, num_of_bits))
+    );
+}
+
 criterion_group!(
     benches, 
-    get_binary_bench,
-    get_padding_bench,
-    get_parsed_message_bench
+    //get_parsed_message_bench
+    num_to_bin_bench
 );
 criterion_main!(benches);

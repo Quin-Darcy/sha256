@@ -2,7 +2,7 @@
 #![allow(unused_variables)]
 #![allow(non_snake_case)]
 
-//use std::vec::Vec;
+
 
 pub mod sha {
     pub fn sigma_0_256(x: u32) -> u32 {
@@ -71,6 +71,7 @@ pub mod converter {
     }
 
     pub fn num_to_bin(num: u32, num_of_bits: u32) -> Vec<u32> {
+        println!("in num_to_bin");
         let mut t: u32 = 1;
         let mut index: usize = 0;
         let mut n: u32 = num.clone();

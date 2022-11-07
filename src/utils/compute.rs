@@ -73,7 +73,7 @@ pub mod converter {
     pub fn num_to_bin(num: u32, num_of_bits: u32) -> Vec<u32> {
         let mut t: u32 = 1;
         let mut index: usize = 0;
-        let mut n: u32 = num.clone();
+        let mut n: u32 = num;
         let mut bin_rep: Vec<u32> = vec![0; num_of_bits as usize];
        
         for _ in 0..num_of_bits {

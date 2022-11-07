@@ -78,7 +78,8 @@ pub mod converter {
        
         for _ in 0..num_of_bits {
             if n == 0 { break; }
-            while t != 0 {
+            for _ in 0..num_of_bits {
+                if t == 0 { break; }
                 index += 1;
                 t = n >> index;
             }

@@ -56,7 +56,13 @@ pub fn digest(parsed_message: Vec<Vec<u32>>) -> Vec<u32> {
         
         for t in 0..WORDS_IN_SCHEDULE {
             let k: u32 = sha::sha_constants(FIRST_PRIMES[t], 3);
-            let t1: u32 = &h+sha::SIGMA_1_256(&e)+sha::ch(&e, &f, &g)+k+message_schedule[t];
+            
+            let t1: u32 = h
+                .wrapping_add(sha::SIGMA_1_256(&e))
+                .wrapping_add(sha::ch(&e, &f, &g))
+                .wrapping_add(k)
+                .wrapping_add(message_schedule[t]);
+
             let t2: u32 = sha::SIGMA_0_256(&a)+sha::maj(&a, &b, &c);
             h = g;
             g = f;

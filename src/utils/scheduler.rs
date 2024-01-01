@@ -25,7 +25,7 @@ pub fn digest(parsed_message: Vec<Vec<u32>>) -> Vec<u32> {
         H.push(sha::sha_constants(FIRST_PRIMES[i], 2));
     }
 
-    for i in 1..blocks_in_message+1 {
+    for i in 1..blocks_in_message + 1 {
         
         for t in 0..WORDS_IN_SCHEDULE {
             if t < WORDS_IN_BLOCK {
@@ -36,18 +36,23 @@ pub fn digest(parsed_message: Vec<Vec<u32>>) -> Vec<u32> {
                 let w3: u32 = message_schedule[t-15].clone();
                 let w4: u32 = message_schedule[t-16].clone();
 
-                message_schedule[t] = sha::sigma_1_256(w1)+w2+sha::sigma_0_256(w3)+w4;
+                // Use of wrapping add for expected overflow
+                message_schedule[t] = sha::sigma_1_256(w1)
+                    .wrapping_add(w2)
+                    .wrapping_add(sha::sigma_0_256(w3))
+                    .wrapping_add(w4);
+
             }
         }
         
-        let mut a: u32 = H[0].clone(); //sha_constants(FIRST_PRIMES[0], 2);
-        let mut b: u32 = H[1].clone(); //sha_constants(FIRST_PRIMES[1], 2);
-        let mut c: u32 = H[2].clone(); //sha_constants(FIRST_PRIMES[2], 2);
-        let mut d: u32 = H[3].clone(); //sha_constants(FIRST_PRIMES[3], 2);
-        let mut e: u32 = H[4].clone(); //sha_constants(FIRST_PRIMES[4], 2);
-        let mut f: u32 = H[5].clone(); //sha_constants(FIRST_PRIMES[5], 2);
-        let mut g: u32 = H[6].clone(); //sha_constants(FIRST_PRIMES[6], 2);
-        let mut h: u32 = H[7].clone(); //sha_constants(FIRST_PRIMES[7], 2);
+        let mut a: u32 = H[0].clone(); 
+        let mut b: u32 = H[1].clone();
+        let mut c: u32 = H[2].clone();
+        let mut d: u32 = H[3].clone();
+        let mut e: u32 = H[4].clone();
+        let mut f: u32 = H[5].clone();
+        let mut g: u32 = H[6].clone();
+        let mut h: u32 = H[7].clone();
         
         for t in 0..WORDS_IN_SCHEDULE {
             let k: u32 = sha::sha_constants(FIRST_PRIMES[t], 3);

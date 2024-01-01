@@ -69,7 +69,7 @@ pub fn digest(parsed_message: Vec<Vec<u32>>) -> Vec<u32> {
             h = g;
             g = f;
             f = e;
-            e = d.wrapping_add(&t1);
+            e = d.wrapping_add(t1);
             d = c;
             c = b;
             b = a;

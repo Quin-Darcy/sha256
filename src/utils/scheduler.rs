@@ -69,21 +69,21 @@ pub fn digest(parsed_message: Vec<Vec<u32>>) -> Vec<u32> {
             h = g;
             g = f;
             f = e;
-            e = d+&t1;
+            e = d.wrapping_add(&t1);
             d = c;
             c = b;
             b = a;
-            a = t1+t2;
+            a = t1.wrapping_add(t2);
         }
 
-        H[0] = a + H[0];
-        H[1] = b + H[1];
-        H[2] = c + H[2];
-        H[3] = d + H[3];
-        H[4] = e + H[4];
-        H[5] = f + H[5];
-        H[6] = g + H[6];
-        H[7] = h + H[7];
+        H[0] = a.wrapping_add(H[0]);
+        H[1] = b.wrapping_add(H[1]);
+        H[2] = c.wrapping_add(H[2]);
+        H[3] = d.wrapping_add(H[3]);
+        H[4] = e.wrapping_add(H[4]);
+        H[5] = f.wrapping_add(H[5]);
+        H[6] = g.wrapping_add(H[6]);
+        H[7] = h.wrapping_add(H[7]);
     }
     H
 }
